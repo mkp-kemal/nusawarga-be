@@ -2,7 +2,7 @@ import express from 'express'
 import { decodeToken, getIsAuth, login, users } from '../controllers/login.controller.js'
 import protectRoute from '../middleware/protected.js'
 import { createBlog, deleteBlog, detailBlog, getBlogs, updateBlog } from '../controllers/blogs.controller.js'
-import { upload } from '../helper/configFile.js'
+import { getImages, upload } from '../helper/configFile.js'
 
 const router = express.Router()
 
@@ -15,5 +15,6 @@ router.get('/me', protectRoute, decodeToken);
 router.put('/blog/:id', upload.single('image'), updateBlog)
 router.delete('/blog/:id', protectRoute, deleteBlog)
 router.get('/blog/:id', detailBlog)
+router.get('/images', getImages)
 
 export default router
