@@ -16,7 +16,7 @@ export const login = async (req, res) => {
 
         await User.findByIdAndUpdate(user._id, { token });
 
-        res.cookie('jwt', token, { httpOnly: true, maxAge: 60 * 60 * 1000 });
+        res.cookie('jwt', token, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000 });
         res.json({ token });
     } catch (err) {
         res.status(500).json({ message: 'Error logging in' });
